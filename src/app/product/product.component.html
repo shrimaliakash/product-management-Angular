@@ -1,0 +1,149 @@
+<div id="wrapper" class="ng-scope">
+    <div class="gray-bg">
+        <div class="wrapper wrapper-content">
+            <div ng-app="ngclickApp">
+                <div ng-controller="ngclickCtrl">
+                    <div class="row">
+                        <div class="col-lg-12" ng-init="getProducts();">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-content mar-all">
+                                    <button class="btn btn-success float-right mar-button" type="submit" ng-click="addProductModelOpen();">Add New</button>
+									<h1 class="header">List of Products</h1>
+
+                                    <div class="row mar-all" id="product">
+                                    </div>
+
+					                <div id="addProductModal" class="modal" tabindex="-1" role="dialog">
+								        <div class="modal-dialog" role="document">
+								            <div class="modal-content">
+								                <div class="modal-header">
+								                    <h5 class="modal-title">Add Product</h5>
+								                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								                        <span aria-hidden="true">&times;</span>
+								                    </button>
+								                </div>
+								                <div class="modal-body">
+													<form id="createProduct" name="createProduct">
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Product Name</label>
+															<input class="form-control" formControlName="product_name" id="add_product_name">
+															<span class="error" id="product_nameError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Product Image</label>
+															<input class="form-control" type="file" formControlName="product_image" id="add_product_image">
+															<span class="error" id="product_imageError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Product Descriptiom</label>
+															<input class="form-control" formControlName="product_description" id="add_product_description">
+															<span class="error" id="product_descriptionError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Price</label>
+															<input class="form-control" formControlName="price" id="add_price">
+															<span class="error" id="priceError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Category</label>
+															<select  class="form-control" formControlName="category" id="add_category">
+																<option value="1">Category1</option>
+																<option value="2">Category2</option>
+																<option value="3">Category3</option>
+																<option value="4">Category4</option>
+																<option value="5">Category5</option>
+																<option value="6">Category6</option>
+																<option value="7">Category7</option>
+																<option value="8">Category8</option>
+																<option value="9">Category9</option>
+																<option value="10">Category10</option>
+															</select>
+															<span class="error" id="categoryError"></span>
+														</div>
+
+														<button type="submit" class="btn btn-primary float-right" ng-click="addProductModelClose();">Submit</button>
+														<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default float-right mar-right" ng-click="addProductModelClose();">Close</button>
+													</form>
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+
+						            <div id="editProductModal" class="modal" tabindex="-1" role="dialog">
+								        <div class="modal-dialog" role="document">
+								            <div class="modal-content">
+								                <div class="modal-header">
+								                    <h5 class="modal-title">Edit Product</h5>
+								                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								                        <span aria-hidden="true">&times;</span>
+								                    </button>
+								                </div>
+								                <div class="modal-body">
+													<form id="editForm">
+														<div class="form-group" [formGroup]="updateForm">
+															<label for="exampleInputPassword1">id</label>
+															<input class="form-control" formControlName="id" id="id" disabled>
+														</div>
+
+														<div class="form-group" [formGroup]="updateForm">
+															<label for="exampleInputPassword1">Name</label>
+															<input class="form-control" formControlName="product_name" id="name">
+															<span class="error" id="UpdateProduct_nameError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Product Image</label>
+															<input class="form-control" type="file" formControlName="product_image" id="product_image">
+															<span class="error" id="UpdateProduct_imageError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Product Descriptiom</label>
+															<input class="form-control" formControlName="product_description" id="product_description">
+															<span class="error" id="UpdateProduct_descriptionError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Price</label>
+															<input class="form-control" formControlName="price" id="price">
+															<span class="error" id="UpdatePriceError"></span>
+														</div>
+
+														<div class="form-group" [formGroup]="addForm">
+															<label for="exampleInputPassword1">Category</label>
+															<select  class="form-control" formControlName="category" id="category">
+																<option value="1">Category1</option>
+																<option value="2">Category2</option>
+																<option value="3">Category3</option>
+																<option value="4">Category4</option>
+																<option value="5">Category5</option>
+																<option value="6">Category6</option>
+																<option value="7">Category7</option>
+																<option value="8">Category8</option>
+																<option value="9">Category9</option>
+																<option value="10">Category10</option>
+															</select>
+															<span class="error" id="UpdateCategoryError"></span>
+														</div>
+
+
+														<button type="submit" class="btn btn-primary float-right" ng-click="editProduct();">Submit</button>
+														<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-default float-right mar-right" ng-click="editProductModelClose();">Close</button>
+													</form>
+								                </div>
+								            </div>
+								        </div>
+								    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
